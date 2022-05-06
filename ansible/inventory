@@ -1,0 +1,16 @@
+web01 ansible_host=180.200.3.85
+
+[dev]
+web01
+
+
+[prod]
+
+
+[us_east:children]
+dev
+prod
+
+[us_east:vars]
+ansible_user=ubuntu
+ansible_ssh_private_key_file=projectx.pem

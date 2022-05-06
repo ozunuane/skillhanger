@@ -1,0 +1,31 @@
+- name: deploy docker dev server
+  hosts: dev
+  become: yes
+
+  tasks:
+      - name: Install python pip 
+        apt:
+          name: python
+          state: present
+
+      - name: Install docker py 
+        apt:
+          name: docker-py 1.7.0
+          state: present        
+
+
+      - name: Install docker py 
+        service:
+          name: Docker 
+          state: started
+          enable: yes   
+
+      - name: start docker container
+        docker_container:
+          name: skillhanger
+          image: "ozunuane:skillhanger:{{DOCKER_TAG}}"
+          ports:
+           - "8080:8080"
+            
+
+

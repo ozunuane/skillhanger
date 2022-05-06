@@ -1,1 +1,5 @@
+.gitignore
 projectx.pem
+ansible.sh
+docker.sh
+sonarqube.sh

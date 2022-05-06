@@ -1,6 +1,7 @@
-#bin/bash
- 
-sudo yum update -y 
+#!bin/bash
+sudo yum update 
+if [ $? -eq 0 ]
+then
 sudo yum install python2 -y
 sudo pip2 install ansible -y
 sudo pip2 install docker -y
@@ -8,8 +9,7 @@ ansible --version
 sudo useradd ansadmin 
 echo"ansible installed on centos"
 
-if [ $? -eq 0 ]
-then
+
 elif [ $? -eq 0 ]
 then
 sudo apt-get update -y
