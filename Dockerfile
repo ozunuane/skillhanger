@@ -1,7 +1,9 @@
-FROM ubuntu 
-RUN apt-get update 
-RUN apt-get install –y apache2 
-RUN apt-get install –y apache2-utils 
-RUN apt-get clean 
-EXPOSE 80 
-CMD [“apache2ctl”, “-D”, “FOREGROUND”]
+FROM tomcat:8.0-alpine
+
+LABEL maintainer=”ozimede”
+
+COPY webapp/* /usr/local/tomcat/webapps/
+
+EXPOSE 8080
+
+CMD [“catalina.sh”, “run”]
