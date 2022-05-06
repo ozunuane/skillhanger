@@ -1,0 +1,40 @@
+pipeline {
+  
+    agent any
+    
+
+   environment { DOCKER_TAG = getVersion() }
+
+
+
+    stages {
+        stage('SCM') {
+          steps { git branch: 'main', credentialsId: '3c6cdfe9-9978-4edb-8379-2547117f7092', 
+                 url: 'https://github.com/ozunuane/skillhanger.git'
+                }
+        }
+        
+        stage('docker build') {
+          steps { sh 'docker build -t ozunuane/skilhhanger:${DOCKER_TAG} .'
+                }        
+        }
+        
+        
+    stage('docker push') { 
+      steps { withCredentials([string(credentialsId: 'dockerhub2', variable: 'dockerpwd')]) {
+    // some block
+}
+          //    sh 'echo $dockerpwd | docker login -u ozimede --password-stdin'
+              
+              sh 'docker push  ozunuane/skilhhanger:${DOCKER_TAG}'
+              
+                }        
+        }
+    }
+}
+
+
+def getVersion()  { 
+def commitHash = sh returnStdout: true, script: 'git rev-parse --short HEAD'
+return commitHash  }
+
