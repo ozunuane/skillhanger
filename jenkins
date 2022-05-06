@@ -21,34 +21,30 @@ pipeline {
         
     
         stage('docker push') {
-          steps {  withCredentials([string(credentialsId: 'dockerpassword', variable: 'dockerpwd')]) {
-    // some block
-}                 
-                 sh 'docker push ozunuane/skilhhanger:${DOCKER_TAG}'
-                }        
-        }
-         
+              steps {  withCredentials([string(credentialsId: 'dockerpassword', variable: 'dockerpwd')]) {
+        // some block
+            }                 
+                     sh 'docker push ozunuane/skilhhanger:${DOCKER_TAG}'
+                    }        
+            }
+             
 
         stage('deploy docker') {
-          steps {          
-        ansiblePlaybook credentialsId: 'ansible-ssh', 
-        disableHostKeyChecking: true, 
-        extras: ' DOCKER_TAG=${DOCKER_TAG}', 
-        inventory: '/ansible/inventory', 
-        playbook: '/ansible/dev_deploy.yml'  }
+              steps {          
+            ansiblePlaybook credentialsId: 'ansible-ssh', 
+            disableHostKeyChecking: true, 
+            extras: '-e DOCKER_TAG="${DOCKER_TAG}"', 
+            inventory: 'ansible/inventory.ini', 
+            playbook: 'ansible/dev_deploy.yml' 
+            }
 
         }
-
-
-
 
         
         
         
     }
 }
-
-
 
 
 
