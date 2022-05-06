@@ -19,22 +19,25 @@ pipeline {
                 }        
         }
         
-        
-    stage('docker push') { 
-      steps { withCredentials([string(credentialsId: 'dockerhub2', variable: 'dockerpwd')]) {
+    
+        stage('docker push') {
+          steps {  withCredentials([string(credentialsId: 'dockerpassword', variable: 'dockerpwd')]) {
     // some block
 }
-          //    sh 'echo $dockerpwd | docker login -u ozimede --password-stdin'
               
-              sh 'docker push  ozunuane/skilhhanger:${DOCKER_TAG}'
-              
+                 
+                 sh 'docker push ozunuane/skilhhanger:${DOCKER_TAG}'
                 }        
         }
+        
+        
+        
+        
     }
 }
 
 
-def getVersion()  { 
-def commitHash = sh returnStdout: true, script: 'git rev-parse --short HEAD'
+def getVersion(){ 
+    def commitHash = sh returnStdout: true, script: 'git rev-parse --short HEAD'
 return commitHash  }
 
