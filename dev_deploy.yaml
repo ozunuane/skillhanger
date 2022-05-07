@@ -29,16 +29,17 @@
 
     - name: Pull default Docker image
       docker_image:
-        name: "ozunuane/skillhanger:latest"
+        name: "ozunuane/skillhanger:{{DOCKER_TAG}}"
         source: pull
 
     - name: Create default containers
       docker_container:
         name: "skillhangerweb01"
-        image: "ozunuane/skillhanger:latest"
-        state: present
-      with_sequence: count=2
-
+        image: "ozunuane/skillhanger:{{DOCKER_TAG}}"
+        state: started
+        ports:
+          - "8080:8081"
+            
 
 
 #   - name: start docker container
