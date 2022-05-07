@@ -1,51 +1,71 @@
 pipeline {
-  
     agent any
-    
+          
+    environment { DOCKER_TAG = getVersion() }
 
-   environment { DOCKER_TAG = getVersion() }
-
-
-
+           
     stages {
-        stage('SCM') {
-          steps { git branch: 'main', credentialsId: '3c6cdfe9-9978-4edb-8379-2547117f7092', 
-                 url: 'https://github.com/ozunuane/skillhanger.git'
+        
+        
+        // git clone url 
+        
+           
+                stage('SCM') {
+                    
+                  steps { git branch: 'main', credentialsId: 'github', 
+                  url: 'https://github.com/ozunuane/skillhanger.git' }
                 }
-        }
+      
+       //stage 2
+                
+                stage('docker build') {
+                    
+          steps { sh 'docker build -t ozunuane/skilhhanger:${DOCKER_TAG} . '}        
+                
+              }
         
-        stage('docker build') {
-          steps { sh 'docker build -t ozunuane/skilhhanger:${DOCKER_TAG} .'
-                }        
-        }
         
-    
-        stage('docker push') {
-              steps {  withCredentials([string(credentialsId: 'dockerpassword', variable: 'dockerpwd')]) {
-        // some block
-            }                 
-                     sh 'docker push ozunuane/skilhhanger:${DOCKER_TAG}'
+        
+        //stage 3
+        
+         stage('docker push') {
+            steps {  withCredentials([string(credentialsId: 'dockerpass', variable: 'dockerpass')]){ 
+                   sh "docker login -u ozunuane -p ${dockerpass}"}            
+
+                   sh 'docker push ozunuane/skilhhanger:${DOCKER_TAG}'
+                        
                     }        
             }
-             
-
+        
+        
         stage('deploy docker') {
               steps {          
             ansiblePlaybook credentialsId: 'ansible-ssh', 
             disableHostKeyChecking: true, 
             extras: '-e DOCKER_TAG="${DOCKER_TAG}"', 
-            inventory: 'ansible/inventory.ini', 
-            playbook: 'ansible/dev_deploy.yml' 
+            inventory: 'inventory', 
+            playbook: 'dev_deploy.yml' 
             }
 
         }
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
     }
 }
-
 
 
 
