@@ -27,8 +27,9 @@
       pip:
         name: docker 
 
+    
     - name: return latest commit head id
-      command: git rev-parse --short HEAD
+      command: cd skillhanger && git rev-parse --short HEAD
       register: DOCKER_TAG       
 
     - name: Pull default Docker image
