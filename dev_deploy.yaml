@@ -9,7 +9,7 @@
           state: present
 
       - name: Install docker py 
-        apt:
+        pip:
           name: docker-py 
           state: present        
 
