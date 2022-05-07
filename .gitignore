@@ -1,7 +1,5 @@
-1
-2
 .gitignore/
-projectx.pem
+skillhanger.pem
 ansible.sh
 docker.sh
 sonarqube.sh

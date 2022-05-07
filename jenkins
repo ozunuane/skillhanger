@@ -20,7 +20,7 @@ pipeline {
                 
                 stage('docker build') {
                     
-          steps { sh 'cd webapp && docker build -t ozunuane/34skillhanger:${DOCKER_TAG} .'}        
+          steps { sh 'docker build -t ozunuane/34skillhanger:${DOCKER_TAG} .'}        
                 
               }
         
@@ -39,16 +39,19 @@ pipeline {
         
       //stage 4
 
+
+
+        
         stage('deploy docker') {
-              steps {          
-            ansiblePlaybook credentialsId: 'ansible-ssh', 
-            disableHostKeyChecking: true, 
-            extras: '-e DOCKER_TAG="${DOCKER_TAG}"', 
-            inventory: 'inventory', 
-            playbook: 'dev_deploy.yml' 
+              steps { ansiblePlaybook credentialsId: 'anssh', 
+              disableHostKeyChecking: true,
+              extras: " -e DOCKER_TAG=${DOCKER_TAG}", 
+              inventory: 'inventory',
+              playbook: 'dev_deploy.yaml'
             }
 
         }
+        
         
         
         
