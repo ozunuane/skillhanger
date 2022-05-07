@@ -20,7 +20,7 @@ pipeline {
                 
                 stage('docker build') {
                     
-          steps { sh 'docker build -t ozunuane/skillhanger:${DOCKER_TAG} . '}        
+          steps { sh 'docker build -t ozunuane/skillhanger:${DOCKER_TAG} .'}        
                 
               }
         
@@ -37,7 +37,8 @@ pipeline {
                     }        
             }
         
-        
+      //stage 4
+
         stage('deploy docker') {
               steps {          
             ansiblePlaybook credentialsId: 'ansible-ssh', 
