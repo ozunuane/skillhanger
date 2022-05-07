@@ -16,7 +16,7 @@
 
       - name: Install docker py 
         service:
-          name: Docker 
+          name: Docker-py
           state: started
           enable: yes   
 
