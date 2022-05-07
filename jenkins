@@ -20,7 +20,7 @@ pipeline {
                 
                 stage('docker build') {
                     
-          steps { sh 'docker build -t ozunuane/34skillhanger:${DOCKER_TAG} .'}        
+          steps { sh 'cd webapp && docker build -t ozunuane/34skillhanger:${DOCKER_TAG} .'}        
                 
               }
         
