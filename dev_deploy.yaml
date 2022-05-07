@@ -31,7 +31,11 @@
 
     - name: Install Docker Module for Python
       pip:
-        name: docker 
+        name: docker
+
+    - name: Install Docker Module for Python
+      pip:
+        name: docker-compose     
 
      
    # - name: Pull default Docker image
