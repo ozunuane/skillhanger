@@ -27,11 +27,7 @@
       pip:
         name: docker 
 
-    
-    - name: return latest commit head id
-      command: cd skillhanger && git rev-parse --short HEAD
-      register: DOCKER_TAG       
-
+     
     - name: Pull default Docker image
       docker_image:
         name: "ozunuane/skillhanger:{{DOCKER_TAG}}"
