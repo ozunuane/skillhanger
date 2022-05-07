@@ -29,13 +29,14 @@
 
     - name: Pull default Docker image
       docker_image:
-        name: "ozunuane:skillhanger:{{DOCKER_TAG}}"
+        name: "ozunuane/skillhanger:{{DOCKER_TAG}}"
         source: pull
+        register: "fresh image"
 
     - name: Create default containers
       docker_container:
         name: "skillhangerweb01"
-        image: "ozunuane:skillhanger:{{DOCKER_TAG}}"
+        image: "ozunuane/skillhanger:{{DOCKER_TAG}}"
         state: present
       with_sequence: count=2
 
