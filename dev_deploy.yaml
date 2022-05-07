@@ -27,12 +27,26 @@
       pip:
         name: docker 
 
-    - name: start docker container
+    - name: Pull default Docker image
+      docker_image:
+        name: "ozunuane:skillhanger:{{DOCKER_TAG}}"
+        source: pull
+
+    - name: Create default containers
       docker_container:
-        name: skillhanger
+        name: "skillhangerweb01"
         image: "ozunuane:skillhanger:{{DOCKER_TAG}}"
-        ports:
-           - "8080:8080"
+        state: present
+      with_sequence: count=2
+
+
+
+#   - name: start docker container
+#      docker_container:
+#        name: skillhanger
+#        image: "ozunuane:skillhanger:{{DOCKER_TAG}}"
+#        ports:
+#          - "8080:8080"
             
 
 
