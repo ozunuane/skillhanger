@@ -10,7 +10,7 @@
 
       - name: Install docker py 
         apt:
-          name: docker-py 1.7.0
+          name: docker-py 
           state: present        
 
 
