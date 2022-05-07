@@ -1,4 +1,4 @@
-web01 ansible_host=180.200.3.85
+web01 ansible_host=10.0.0.6
 
 [dev]
 web01
