@@ -20,7 +20,7 @@ pipeline {
                 
                 stage('docker build') {
                     
-          steps { sh 'docker build -t ozunuane/skillhanger:${DOCKER_TAG} .'}        
+          steps { sh 'docker build -t ozunuane/34skillhanger:${DOCKER_TAG} .'}        
                 
               }
         
@@ -32,7 +32,7 @@ pipeline {
             steps {  withCredentials([string(credentialsId: 'dockerpass', variable: 'dockerpass')]){ 
                    sh "docker login -u ozunuane -p ${dockerpass}"}            
 
-                   sh 'docker push ozunuane/skillhanger:${DOCKER_TAG}'
+                   sh 'docker push ozunuane/34skillhanger:${DOCKER_TAG}'
                         
                     }        
             }
