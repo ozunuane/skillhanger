@@ -5,7 +5,7 @@
   tasks:
       - name: Install python pip 
         apt:
-          name: python
+          name: python-pip
           state: present
 
       - name: Install docker py 
@@ -14,7 +14,7 @@
           state: present        
 
 
-      - name: Install docker py 
+      - name: Install docker-py 
         service:
           name: Docker-py
           state: started
