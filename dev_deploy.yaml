@@ -28,10 +28,10 @@
         name: docker 
 
      
-    - name: Pull default Docker image
-      docker_image:
-        name: "ozunuane/skillhanger:{{DOCKER_TAG}}"
-        source: pull
+   # - name: Pull default Docker image
+   #   docker_image:
+    #    name: "ozunuane/skillhanger:{{DOCKER_TAG}}"
+    #    source: pull
 
     - name: Create default containers
       docker_container:
@@ -43,11 +43,11 @@
     
 
 #   - name: start docker container
-#      docker_container:
-#        name: skillhanger
-#        image: "ozunuane:skillhanger:{{DOCKER_TAG}}"
-#        ports:
-#          - "8080:8080"
+ #     docker_container:
+ #       name: skillhanger
+ #       image: "ozunuane:skillhanger:{{DOCKER_TAG}}"
+ #       ports:
+ #         - "8080:8080"
             
 
 
