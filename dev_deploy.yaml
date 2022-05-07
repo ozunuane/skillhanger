@@ -36,7 +36,7 @@
     - name: Create default containers
       docker_container:
         name: "skillhangerweb01"
-        image: "ozunuane/skillhanger:{{DOCKER_TAG}}"
+        image: "ozunuane/34skillhanger:{{DOCKER_TAG}}"
         state: started
         ports:
           - "8080:8081"
