@@ -1,6 +1,6 @@
 web01 ansible_host=10.0.0.6
 
-[dev]
+[devserver]
 web01
 
 

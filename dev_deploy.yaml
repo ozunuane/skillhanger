@@ -39,7 +39,7 @@
         image: "ozunuane/34skillhanger:{{DOCKER_TAG}}"
         state: started
         ports:
-          - "8080:8081"
+          - "8085:8080"
     
 
 #   - name: start docker container
