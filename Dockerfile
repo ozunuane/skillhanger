@@ -1,3 +1,4 @@
-FROM nginx:alpine
+FROM httpd:2.4
+COPY ./webapp/ /usr/local/apache2/htdocs/
+EXPOSE 80
 
-COPY /webapp /usr/share/nginx/html
