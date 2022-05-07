@@ -1,5 +1,5 @@
 - name: deploy docker dev server
-  hosts: dev
+  hosts: web01
   become: yes
 
   tasks:
