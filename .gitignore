@@ -4,3 +4,4 @@ ansible.sh
 docker.sh
 sonarqube.sh
 projectx
+.gitignore
