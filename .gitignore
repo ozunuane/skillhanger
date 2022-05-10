@@ -5,3 +5,4 @@ docker.sh
 sonarqube.sh
 projectx
 .gitignore
+.skillhanger/
